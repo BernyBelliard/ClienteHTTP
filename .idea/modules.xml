@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Cliente HTTP.iml" filepath="$PROJECT_DIR$/.idea/modules/Cliente HTTP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Cliente_HTTP_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Cliente_HTTP_main.iml" group="Cliente HTTP" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Cliente_HTTP_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Cliente_HTTP_test.iml" group="Cliente HTTP" />
+    </modules>
+  </component>
+</project>
