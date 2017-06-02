@@ -11,6 +11,7 @@ import java.net.UnknownHostException;
 import java.util.Scanner;
 import java.net.*;
 import java.io.*;
+
 /**
  * Created by Berny Belliard on 26/5/2017.
  */
@@ -140,20 +141,23 @@ public class main {
     // Enviar pedido al servidor
 
     public static void operacionF(String nUrl, Elements formElements) {
+        System.out.println("f)");
+        System.out.println("");
         for (Element nElement : formElements) {
-            Elements actionElement = nElement.getElementsByAttribute("action");
-            for (int i = 0; i < actionElement.size(); i++) {
+            Elements postElement = nElement.getElementsByAttributeValueContaining("method", "post");
+            for(Element actionElement: postElement){
 
-                String actionValue = actionElement.attr("action").toString();
                 Document newDocument = null;
                 try {
-                    newDocument = Jsoup.connect(nUrl + actionValue).data("asignatura", "practica1").post();
+                    newDocument = Jsoup.connect(actionElement.absUrl("action")).data("asignatura", "practica1").post();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                System.out.println("f)");
+                System.out.println(actionElement.absUrl("action"));
                 System.out.println("");
-                System.out.println(newDocument);
+                if(newDocument!=null)
+                System.out.println(newDocument.body().html());
+                System.out.println("");
             }
         }
     }
