@@ -9,7 +9,8 @@ import javax.xml.bind.SchemaOutputResolver;
 import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.Scanner;
-
+import java.net.*;
+import java.io.*;
 /**
  * Created by Berny Belliard on 26/5/2017.
  */
@@ -26,7 +27,7 @@ public class main {
         String newUrl = leer.next();
 
         // Obtener documento de la URL
-
+        //newUrl = "http://itachi.avathartech.com:4567/2017.html";
         try {
             document = Jsoup.connect(newUrl).get();
         } catch (UnknownHostException e) {
@@ -34,11 +35,14 @@ public class main {
 
         } catch (IOException e) {
             System.err.println("Url inválida");
-
         }
 
         if(document!=null) {
-            operacionA(document);
+            try {
+                operacionA(newUrl);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             operacionBC(document);
             operacionD(document);
             Elements formElements = document.getElementsByTag("form");
@@ -50,10 +54,20 @@ public class main {
 
     // Imprimir cantidad de líneas
 
-    public static void operacionA(Document document) {
+    public static void operacionA(String nUrl) throws IOException {
+
+        int countLines =0;
+        URL document = new URL(nUrl);
+
+        BufferedReader input = new BufferedReader(
+                new InputStreamReader(document.openStream()));
+
+        while ((input.readLine()) != null)
+            countLines++;
+        input.close();
+
         System.out.println("");
-        String[] nLines = document.html().toString().split("\n");
-        System.out.println("a) Número de líneas: " + nLines.length);
+        System.out.println("a) Número de líneas: " + countLines);
         System.out.println("");
     }
 
